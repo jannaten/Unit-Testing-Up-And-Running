@@ -49,4 +49,14 @@ describe("get currencies", () => {
     // expect(result.length).toBe(3);
   });
 });
+
+describe("get product", () => {
+  it("Should return the product with the given id", () => {
+    const result = lib.getProduct(1);
+    // expect(result).toBe({ id: 1, price: 10 }); //This will fail because the code will try to mathc two objects in memory
+    // expect(result).toEqual({ id: 1, price: 10 }); // This is pass only if all properties are matched with the root object
+    expect(result).toMatchObject({ id: 1, price: 10 }); // This will pass regardless even if you have more properties in the objects
+    expect(result).toHaveProperty("id", 1);
+  });
+});
 // node -v = 14.16.0 npm -v 7.6.2
