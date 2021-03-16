@@ -7,3 +7,7 @@ module.exports.absolute = function (number) {
 module.exports.greet = function (name) {
   return "Welcome " + name + "!";
 };
+
+module.exports.getCurrencies = function () {
+  return ["USD", "AUD", "EUR"];
+};

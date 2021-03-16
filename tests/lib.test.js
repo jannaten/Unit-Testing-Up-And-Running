@@ -25,4 +25,28 @@ describe("greet", () => {
     expect(result).toContain("Mosh");
   });
 });
+
+describe("get currencies", () => {
+  it("should return supported currencies", () => {
+    const result = lib.getCurrencies();
+
+    // proper way
+    expect(result).toContain("USD");
+    expect(result).toContain("AUD");
+    expect(result).toContain("EUR");
+
+    // ideal way
+    expect(result).toEqual(expect.arrayContaining(["EUR", "USD", "AUD"]));
+
+    // Too general
+    // expect(result).toBeDefined();
+    // expect(result).not.toBeNull();
+
+    // Too specific
+    // expect(result[0]).toBe('USD');
+    // expect(result[1]).toBe('AUS');
+    // expect(result[2]).toBe('EUR');
+    // expect(result.length).toBe(3);
+  });
+});
 // node -v = 14.16.0 npm -v 7.6.2
