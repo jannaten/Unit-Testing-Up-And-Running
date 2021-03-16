@@ -1,4 +1,5 @@
 const lib = require("../lib");
+const db = require("../db");
 
 describe("absolute", () => {
   test("should return a postive number if input is positive", () => {
@@ -102,6 +103,18 @@ describe("Fizz Buzz ", () => {
   it("should return fizz buzz if input isn't divisible by 3 or 5", () => {
     const result = lib.fizzBuzz(1);
     expect(result).toBe(1);
+  });
+});
+
+describe("Apply Discount", () => {
+  it("Should apply 10% discount if the customer has more than 10 points", () => {
+    db.getCustomerSync = function (customerId) {
+      console.log("This is a mock function");
+      return { id: customerId, points: 20 };
+    };
+    const order = { customerId: 1, totalPrice: 10 };
+    lib.applyDiscount(order);
+    expect(order.totalPrice).toBe(9);
   });
 });
 
