@@ -61,7 +61,7 @@ describe("get product", () => {
 });
 
 describe("register user", () => {
-  it("Should throw if username is falsy", () => {
+  it("Should throw error if username is falsy", () => {
     const args = [null, undefined, "", NaN, 0, false];
     args.forEach((a) => {
       expect(() => {
@@ -75,4 +75,34 @@ describe("register user", () => {
     expect(result.id).toBeGreaterThan(0);
   });
 });
+
+describe("Fizz Buzz ", () => {
+  it("Should throw error if input is not number", () => {
+    expect(() => lib.fizzBuzz("a")).toThrow();
+    expect(() => lib.fizzBuzz(null)).toThrow();
+    expect(() => lib.fizzBuzz(undefined)).toThrow();
+    expect(() => lib.fizzBuzz({})).toThrow();
+  });
+
+  it("should return fizz buzz if input is divisible by 3 and 5", () => {
+    const result = lib.fizzBuzz(15);
+    expect(result).toBe("FizzBuzz");
+  });
+
+  it("should return fizz buzz if input is divisible by 3", () => {
+    const result = lib.fizzBuzz(9);
+    expect(result).toBe("Fizz");
+  });
+
+  it("should return fizz buzz if input is divisible by 5", () => {
+    const result = lib.fizzBuzz(25);
+    expect(result).toBe("Buzz");
+  });
+
+  it("should return fizz buzz if input isn't divisible by 3 or 5", () => {
+    const result = lib.fizzBuzz(1);
+    expect(result).toBe(1);
+  });
+});
+
 // node -v = 14.16.0 npm -v 7.6.2
