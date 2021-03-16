@@ -1,5 +1,6 @@
 const lib = require("../lib");
 const db = require("../db");
+const mail = require("../mail");
 
 describe("absolute", () => {
   test("should return a postive number if input is positive", () => {
@@ -118,4 +119,17 @@ describe("Apply Discount", () => {
   });
 });
 
+describe("Notify Customer", () => {
+  it("Should send an email to the customer", () => {
+    db.getCustomerSync = function (customerId) {
+      return { email: "a" };
+    };
+    let mailSent = false;
+    mail.send = function (email, message) {
+      mailSent = true;
+    };
+    lib.notifyCustomer({ customerId: 1 });
+    expect(mailSent).toBe(true);
+  });
+});
 // node -v = 14.16.0 npm -v 7.6.2
